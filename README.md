@@ -51,3 +51,5 @@ Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/ns
 ### Vector operations
 
 The current version of the notebook uses vector operations via Numpy. This is **much** faster than iterative loops. It allows raising the precision (using more dots) without the execution time becoming too huge.
+
+It does use a lot of memory, however. This is why we're forcing garbage collection at the end of each loop. This ought to keep memory usage reasonable. With the current settings it should work on a system with 16 GB of RAM (that's my development machine).
