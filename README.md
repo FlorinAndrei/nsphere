@@ -22,7 +22,7 @@ Out of these dots, some will be inside the sphere, others will be outside. Count
 
 ![slice with dots](/images/slice_with_dots.png)
 
-If you generate a very large number of dots, and they are random enough, then the sphere / cube volume ration is approximated by:
+If you generate a very large number of dots, and they are random enough, then the sphere / cube volume ratio is approximated by:
 
 ```
 ratio = Ds / D
