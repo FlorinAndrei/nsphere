@@ -2,7 +2,7 @@
 
 In 2 dimensions (N = 2), consider the unity square (1 x 1 size). In it, inscribe a circle. What is the ratio between the area of the circle and the area of the square?
 
-TBD insert image
+![empty slice](/images/empty_slice.png)
 
 In 3 dimensions (N = 3), consider the unity cube (1 x 1 x 1). In it, inscribe a sphere. What is the ratio between the volume of the sphere and the volume of the cube?
 
@@ -20,7 +20,7 @@ Generate a large number of dots within the cube, with random locations. Let's sa
 
 Out of these dots, some will be inside the sphere, others will be outside. Count all the dots that are inside the sphere - let's say their total number is Ds.
 
-TBD insert image
+![slice with dots](/images/slice_with_dots.png)
 
 If you generate a very large number of dots, and they are random enough, then the sphere / cube volume ration is approximated by:
 
@@ -34,7 +34,7 @@ It's an "experimental" method that does not rely on exact analytic solutions.
 
 It turns out, as N increases, the volume ratio decreases. As the number of dimensions keeps getting larger, the sphere appears to "shrink" in volume, as compared to the cube, even though the sphere is always inscribed in the cube.
 
-TBD insert image
+![graph with ratios](/images/graph_with_ratios.png)
 
 The decrease is sharp. Around N = 16, the volume ratio is essentially zero already.
 
