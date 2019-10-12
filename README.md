@@ -41,3 +41,9 @@ The decrease is sharp. Around N = 16, the volume ratio is essentially zero alrea
 Seems like, as N increases, there is more space available in the corners of the cube. The volume outside the sphere, in the corners of the cube containing it, becomes larger and larger. In comparison, the sphere becomes more and more insignificant.
 
 Makes sense when you think about it for a while, but it's quite surprising at first.
+
+## Code
+
+Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/nsphere.ipynb) Jupyter notebook in this repository. It contains the Monte Carlo simulation and the visualization code that were used to create the images in this document. You could download and run it in your own Jupyter installation, or run it in nbviewer here:
+
+[live copy on nbviewer](https://nbviewer.jupyter.org/github/FlorinAndrei/nsphere/blob/master/nsphere.ipynb)
