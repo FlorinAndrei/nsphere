@@ -48,7 +48,7 @@ Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/ns
 
 [https://nbviewer.jupyter.org/github/FlorinAndrei/nsphere/blob/master/nsphere.ipynb](https://nbviewer.jupyter.org/github/FlorinAndrei/nsphere/blob/master/nsphere.ipynb)
 
-Note: Currently nbviewer is buggy, only shows a few points on the simulation (TODO: figure out why). It's also slow, which is normal for a heavily used shared environment.
+Note: Currently nbviewer is buggy when running the code (though still reliable to show it), only shows a few points on the simulation (TODO: figure out why). It's also slow, which is normal for a heavily used shared environment.
 
 ### Vector operations
 
