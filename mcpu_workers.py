@@ -8,7 +8,8 @@ def make_dots(arglist):
     # generate all points
     # # on a system with 16 GB RAM and 12 CPUs / workers,
     # # system memory is exhausted when the pts array
-    # # is over 500 MB, or 60 million elements (points * dims)
+    # # is over 500 MB, or 60 million elements (points * dims).
+    # # Half of RAM is taken by pts arrays in all workers.
     # # TODO: implement code to fragment this array when too big
     pts = np.random.random_sample((points, d)) - 0.5
     # keep a sample of points
