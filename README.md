@@ -1,10 +1,10 @@
 # nsphere
 
-In 2 dimensions (N = 2), consider the unity square (1 x 1 size). In it, inscribe a circle. What is the ratio between the area of the circle and the area of the square?
+In 2 dimensions (N = 2), consider the unit square (1 x 1 size). In it, inscribe a circle. What is the ratio between the area of the circle and the area of the square?
 
 ![empty slice](/images/empty_slice.png)
 
-In 3 dimensions (N = 3), consider the unity cube (1 x 1 x 1). In it, inscribe a sphere. What is the ratio between the volume of the sphere and the volume of the cube?
+In 3 dimensions (N = 3), consider the unit cube (1 x 1 x 1). In it, inscribe a sphere. What is the ratio between the volume of the sphere and the volume of the cube?
 
 What happens when N = 4? N = 5? Or when N is arbitrarily large?
 
