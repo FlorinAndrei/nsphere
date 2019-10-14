@@ -6,7 +6,7 @@ def make_dots(arglist):
     points, d, num_p = arglist
     points = int(points / num_p)
     # generate all points
-    # # on a system with 16 GB RAM and XXX CPUs / workers,
+    # # on a system with 16 GB RAM and 12 CPUs / workers,
     # # system memory is exhausted when the pts array
     # # is over 500 MB, or 60 million elements (points * dims)
     # # TODO: implement code to fragment this array when too big
