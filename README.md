@@ -44,9 +44,11 @@ Makes sense when you think about it for a while, but it's quite surprising at fi
 
 ## Code
 
-Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/nsphere.ipynb) Jupyter notebook in this repository. It contains the Monte Carlo simulation and the visualization code that were used to create the images in this document. You could download and run it in your own Jupyter installation. Or run it on nbviewer (currently nbviewer is buggy, only shows a few points on the simulation):
+Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/nsphere.ipynb) Jupyter notebook in this repository. It contains the Monte Carlo simulation and the visualization code that were used to create the images in this document. You could download and run it in your own Jupyter installation. Or run it on nbviewer:
 
 [https://nbviewer.jupyter.org/github/FlorinAndrei/nsphere/blob/master/nsphere.ipynb](https://nbviewer.jupyter.org/github/FlorinAndrei/nsphere/blob/master/nsphere.ipynb)
+
+Note: Currently nbviewer is buggy, only shows a few points on the simulation (TODO: figure out why). It's also slow, which is normal for a heavily used shared environment.
 
 ### Vector operations
 
