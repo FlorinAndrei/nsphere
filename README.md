@@ -55,3 +55,13 @@ Note: Currently nbviewer is buggy, only shows a few points on the simulation (TO
 The current version of the notebook uses vector operations via Numpy. This is **much** faster than iterative loops. It allows raising the precision (using more dots) without the execution time becoming too huge.
 
 It does use a lot of memory, however. This is why we're forcing garbage collection at the end of each loop. This ought to keep memory usage reasonable. With the current settings it should work on a system with 16 GB of RAM (that's my development machine).
+
+### Multiprocessing
+
+To speed things up even further, the main Numpy code that does the simulation is instantiated by multiple workers at once, one for each CPU. This provides another massive speed boost.
+
+### Limits
+
+After all optimizations, the main bottleneck is system memory. All math is done in Numpy arrays that use most of the available RAM, vectorized and parallel, for the greatest speed possible. The current code runs well on 12 CPUs and 16 GB of RAM. It does not (yet) adapt to different memory sizes or numbers of CPU - you would need to tweak variables such as `points` and `d_max`.
+
+Further speed-ups might be doable with CUDA / GPUs. Perhaps [Cupy](https://cupy.chainer.org/) would work? TBD
