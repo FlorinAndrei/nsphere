@@ -18,7 +18,7 @@ def make_dots(arglist):
     # # TODO: implement code to fragment this array when too big
 
     # 0.04 is a magic number based on variable type
-    if (points * d / gpumem) > 0.04:
+    if (points * d / usemem) > 0.04:
         split = True
     # placeholder variables - loops will be implemented later
     p_int = 0
