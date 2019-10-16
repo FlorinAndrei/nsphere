@@ -60,8 +60,12 @@ It does use a lot of memory, however. This is why we're forcing garbage collecti
 
 To speed things up even further, the main Numpy code that does the simulation is instantiated by multiple workers at once, one for each CPU. This provides another massive speed boost.
 
+### GPU
+
+Status: proof of concept
+
+If Cupy is installed and a GPU is available, the workers will switch from Numpy to Cupy and will use the GPU for linear algebra. Once the worker is done, the matrices with the results are returned to the host in plain Numpy form. This is more like an early proof of concept, I feel there's a lot more that could be done to fully utilize the power of the GPU. I expect to be able to use a far larger amount of dots on the GPU (serializing the ops a bit, to make sure it fits in the GPU memory). Also, the best number of workers might be different (probably one would be enough).
+
 ### Limits
 
-After all optimizations, the main bottleneck is system memory. All math is done in Numpy arrays that use most of the available RAM, vectorized and parallel, for the greatest speed possible. The current code runs well on 12 CPUs and 16 GB of RAM. It does not (yet) adapt to different memory sizes or numbers of CPU - you would need to tweak variables such as `points` and `d_max`.
-
-Further speed-ups might be doable with CUDA / GPUs. Perhaps [Cupy](https://cupy.chainer.org/) would work? TBD
+After all optimizations, the main bottleneck is memory. All math is done in Numpy / Cupy arrays that use most of the available system / GPU RAM, vectorized and parallel, for the greatest speed possible. The current code runs well on 12 CPUs and 16 GB of RAM, or on a Turing class GPU (GTX 1660 Ti) with 6 GB of memory. It does not (yet) adapt to different memory sizes or numbers of CPU - you would need to tweak variables such as `points` and `d_max`.
