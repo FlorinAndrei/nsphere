@@ -17,9 +17,12 @@ def make_dots(arglist):
     # # Half of RAM is taken by pts arrays in all workers.
     # # TODO: implement code to fragment this array when too big
 
-    # 0.04 is a magic number based on variable type
-    if (points * d / usemem) > 0.04:
+    # 0.04 is a magic number based on
+    # the size of each cell in the pts matrix (float32 usually)
+    magic_ratio = 0.04
+    if (points * d / usemem) > magic_ratio:
         split = True
+
     # placeholder variables - loops will be implemented later
     p_int = 0
     loops = 1
