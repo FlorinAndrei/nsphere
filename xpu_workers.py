@@ -1,4 +1,5 @@
 import gc
+import random
 
 def make_dots(arglist):
     # multiprocessing.pool.map() only works with one argument
@@ -9,6 +10,12 @@ def make_dots(arglist):
     else:
         import numpy as xp
         usemem = sysmem / 2
+        # Numpy bug: on Mac/Linux with multiprocessing
+        # all workers are seeded the same random state, so the "random"
+        # sequences made by different workers are identical. WTH
+        # Have to seed each worker from the Python random lib.
+        rseed = random.randint(0, 4294967296)
+        xp.random.seed(rseed)
     points = int(points / num_p)
     # generate all points
     # # on a system with 16 GB RAM and 12 CPUs / workers,
