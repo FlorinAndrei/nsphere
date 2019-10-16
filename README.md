@@ -70,4 +70,6 @@ I expect later to be able to use a far larger amount of dots on the GPU (seriali
 
 ### Limits
 
-After all optimizations, the main bottleneck is memory. All math is done in Numpy / Cupy arrays that use most of the available system / GPU RAM, vectorized and parallel, for the greatest speed possible. The current code runs well on 12 CPUs and 16 GB of RAM, or on a Turing class GPU (GTX 1660 Ti) with 6 GB of memory. It does not (yet) adapt to different memory sizes or numbers of CPU - you would need to tweak variables such as `points` and `d_max`.
+After all optimizations, the main bottleneck is memory. All math is done in Numpy / Cupy arrays that use most of the available system / GPU RAM, vectorized and parallel, for the greatest speed possible. The current code runs well on 12 CPUs and 16 GB of RAM, or on a Turing class GPU (GTX 1660 Ti) with 6 GB of memory. It does not (yet) adapt to different memory sizes or numbers of CPU - if you run out of memory you would need to tweak variables such as `points` and `pointloops`. Keep the memory full; more memory uage means greater speed; but keep it below 100%, or else it will crash.
+
+Some kind of memory management system needs to be implemented, obviously.
