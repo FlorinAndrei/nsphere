@@ -2,7 +2,7 @@ import gc
 
 def make_dots(arglist):
     # multiprocessing.pool.map() only works with one argument
-    points, d, num_p, sysmem, gpumem = arglist
+    points, d, num_p, sysmem, gpumem, pointloops = arglist
     if gpumem > 0:
         import cupy as xp
         usemem = gpumem
@@ -23,11 +23,8 @@ def make_dots(arglist):
     if (points * d / usemem) > magic_ratio:
         split = True
 
-    # placeholder variables - loops will be implemented later
     p_int = 0
-    loops = 1
-
-    for i in range(loops):
+    for i in range(pointloops):
         pts = xp.random.random_sample((points, d)) - 0.5
         # keep a sample of points
         ssize = int(100 / num_p)
@@ -43,7 +40,7 @@ def make_dots(arglist):
         p_int += (dists <= 0.5).sum()
         del dists
         gc.collect()
-    p_int = p_int / loops
+    p_int = p_int / pointloops
     if gpumem > 0:
         return [xp.asnumpy(p_int), xp.asnumpy(pts_sample)]
     else:
