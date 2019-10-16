@@ -50,6 +50,8 @@ Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/ns
 
 Note: Currently nbviewer is buggy when running the code (though still reliable to show it), only shows a few points on the simulation (TODO: figure out why). It's also slow, which is normal for a heavily used shared environment.
 
+The Numpy / CUDA part is in [xpu_workers.py](https://github.com/FlorinAndrei/nsphere/blob/master/xpu_workers.py).
+
 ### Vector operations
 
 The current version of the notebook uses vector operations via Numpy. This is **much** faster than iterative loops. It allows raising the precision (using more dots) without the execution time becoming too huge.
