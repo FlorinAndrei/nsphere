@@ -62,9 +62,9 @@ To speed things up even further, the main Numpy code that does the simulation is
 
 ### GPU
 
-Status: proof of concept
+If Cupy is installed and a GPU is available, the worker (only 1 worker when GPU is enabled) will switch from Numpy to Cupy and will use the GPU for linear algebra. Once the worker is done, the matrices with the results are returned to the host in plain Numpy form.
 
-If Cupy is installed and a GPU is available, the workers will switch from Numpy to Cupy and will use the GPU for linear algebra. Once the worker is done, the matrices with the results are returned to the host in plain Numpy form. This is more like an early proof of concept, I feel there's a lot more that could be done to fully utilize the power of the GPU. I expect to be able to use a far larger amount of dots on the GPU (serializing the ops a bit, to make sure it fits in the GPU memory). Also, the best number of workers might be different (probably one would be enough).
+I expect later to be able to use a far larger amount of dots on the GPU (serializing things in a loop in the worker, to make sure it fits in the GPU memory).
 
 ### Limits
 
