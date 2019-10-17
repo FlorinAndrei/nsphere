@@ -10,12 +10,13 @@ def make_dots(arglist):
     else:
         import numpy as xp
         usemem = sysmem / 2
-        # Numpy bug: on Mac/Linux with multiprocessing
-        # all workers are seeded the same random state, so the "random"
-        # sequences made by different workers are identical. WTH
-        # Have to seed each worker from the Python random lib.
-        rseed = random.randint(0, 4294967296)
-        xp.random.seed(rseed)
+        # If you use multiprocessing.set_start_method('spawn') (the default on Windows)
+        # then the following lines are not necessary. If you use the 'fork' method instead
+        # (default on Unix) then all workers will generate identical "random" sequences,
+        # lowering the entropy of the population - then you must seed each worker randomly
+        # as shown here:
+        #rseed = random.randint(0, 4294967296)
+        #xp.random.seed(rseed)
     points = int(points / num_p)
     # generate all points
     # # on a system with 16 GB RAM and 12 CPUs / workers,
