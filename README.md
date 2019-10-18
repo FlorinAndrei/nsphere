@@ -36,7 +36,7 @@ It turns out, as N increases, the volume ratio decreases. As the number of dimen
 
 ![graph with ratios](/images/graph_with_ratios.png)
 
-The decrease is sharp. Around N = 16, the volume ratio is essentially zero already.
+The decrease is sharp. Beyond N = 10 the volume ratio is essentially zero.
 
 Seems like, as N increases, there is more space available in the corners of the cube. The volume outside the sphere, in the corners of the cube containing it, becomes larger and larger. In comparison, the sphere becomes more and more insignificant.
 
