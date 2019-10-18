@@ -78,7 +78,6 @@ def make_dots(arglist):
         del dists
         gc.collect()
 
-    #p_int = p_int / worker_loops
     if gpumem > 0:
         return [p_int, xp.asnumpy(pts_sample)]
     else:
