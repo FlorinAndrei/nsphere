@@ -70,6 +70,6 @@ The code assumes either 0 or 1 GPUs are installed on the system. It cannot use m
 
 After all optimizations, the main bottleneck is memory. All math is done in Numpy / Cupy arrays that use most of the available system / GPU RAM, vectorized and parallel, for the greatest speed possible. The code auto-detects the system and GPU memory sizes, and it will adapt to the existing memory: if the whole matrix with all the points does not fit in memory, it will fragment it and loop until all fragments are processed.
 
-This way simulations could run using very large number of points (a billion or more) - the code would just have to loop until all points are processed. Time is traded for precision.
+This way simulations could run using a very large number of points (a billion or more) - the code would just have to loop until all points are processed. Time is traded for precision.
 
 On a GPU, the app will use most of its memory. On the CPU, it will use somewhat less than half the system RAM.
