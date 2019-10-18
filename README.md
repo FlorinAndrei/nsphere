@@ -44,19 +44,17 @@ Makes sense when you think about it for a while, but it's quite surprising at fi
 
 ## Code
 
-Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/nsphere.ipynb) Jupyter notebook in this repository. It contains the Monte Carlo simulation and the visualization code that were used to create the images in this document. You could download and run it in your own Jupyter installation. Or run it on nbviewer (which is the more reliable way to read the source code of the notebook, compared to GitHub's own):
+Check the [nsphere.ipynb](https://github.com/FlorinAndrei/nsphere/blob/master/nsphere.ipynb) Jupyter notebook in this repository. It contains the Monte Carlo simulation and the visualization code that were used to create the images in this document. You could download and run it in your own Jupyter installation. Or run it on nbviewer (which is the more reliable way to read the source code of the notebook, compared to GitHub's own notebook viewer):
 
 [https://nbviewer.jupyter.org/github/FlorinAndrei/nsphere/blob/master/nsphere.ipynb](https://nbviewer.jupyter.org/github/FlorinAndrei/nsphere/blob/master/nsphere.ipynb)
 
-Note: Currently nbviewer is buggy when running the code (though still reliable to show it), only shows a few points on the simulation (TODO: figure out why). It's also slow, which is normal for a heavily used shared environment.
-
-The Numpy / CUDA part is in [xpu_workers.py](https://github.com/FlorinAndrei/nsphere/blob/master/xpu_workers.py).
+The Numpy / CUDA implementation is in [xpu_workers.py](https://github.com/FlorinAndrei/nsphere/blob/master/xpu_workers.py).
 
 ### Vector operations
 
 The current version of the notebook uses vector operations via Numpy. This is **much** faster than iterative loops. It allows raising the precision (using more dots) without the execution time becoming too huge.
 
-It does use a lot of memory, however. This is why we're forcing garbage collection in a bunch of places. This ought to keep memory usage reasonable. With the current settings it should work on a system with 16 GB of RAM (that's my development machine).
+It does use a lot of memory, however. This is why we're forcing garbage collection in a bunch of places. This ought to keep memory usage within the limits we're enforcing (see below).
 
 ### Multiprocessing
 
@@ -64,12 +62,14 @@ To speed things up even further, the main Numpy code that does the simulation is
 
 ### GPU
 
-If Cupy is installed and a GPU is available, the worker (only 1 worker when GPU is enabled) will switch from Numpy to Cupy and will use the GPU for linear algebra. Once the worker is done, the matrices with the results are returned to the host in plain Numpy form.
+If Cupy is installed and a GPU is available, the worker (only 1 worker is used when GPU is enabled) will switch from Numpy to Cupy and will use the GPU for linear algebra. Once the worker is done, the matrices with the results are returned to the host in plain Numpy form.
 
-I expect later to be able to use a far larger amount of dots on the GPU (serializing things in a loop in the worker, to make sure it fits in the GPU memory).
+The code assumes either 0 or 1 GPUs are installed on the system. It cannot use multiple GPUs for now.
 
 ### Limits
 
-After all optimizations, the main bottleneck is memory. All math is done in Numpy / Cupy arrays that use most of the available system / GPU RAM, vectorized and parallel, for the greatest speed possible. The current code runs well on 12 CPUs and 16 GB of RAM, or on a Turing class GPU (GTX 1660 Ti) with 6 GB of memory. It does not (yet) adapt to different memory sizes or numbers of CPU - if you run out of memory you would need to tweak variables such as `points` and `pointloops`. Keep the memory full; more memory uage means greater speed; but keep it below 100%, or else it will crash.
+After all optimizations, the main bottleneck is memory. All math is done in Numpy / Cupy arrays that use most of the available system / GPU RAM, vectorized and parallel, for the greatest speed possible. The code auto-detects the system and GPU memory sizes, and it will adapt to the existing memory: if the whole matrix with all the points does not fit in memory, it will fragment it and loop until all fragments are processed.
 
-Some kind of memory management system needs to be implemented, obviously.
+This way simulations could run using very large number of points (a billion or more) - the code would just have to loop until all points are processed. Time is traded for precision.
+
+On a GPU, the app will use most of its memory. On the CPU, it will use somewhat less than half the system RAM.
